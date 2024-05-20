@@ -1,0 +1,31 @@
+spring:
+  cloud:
+    azure:
+      eventgrid:
+        endpoint: ${EVENTGRID_ENDPOINT}
+        key: ${EVENTGRID_KEY}
+      servicebus:
+        connection-string: ${SERVICEBUS_CONNECTION_STRING}
+    function:
+      definition: consume
+    stream:
+      bindings:
+        consume-in-0:
+          destination: "que2115"
+      servicebus:
+        bindings:
+          consume-in-0:
+            consumer:
+              auto-complete: false
+  jms:
+    servicebus:
+      namespace: namespace2115
+      pricing-tier: Basic
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: ${DATABASE_CONNECTION_STRING}
+server:
+  port: 80
